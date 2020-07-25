@@ -38,8 +38,8 @@ const Nav = styled.nav`
         }
       }
 
-      &:first-child,
-      &:last-child {
+      &:first-child.arrow-left,
+      &:last-child.arrow-right {
         a {
           background-color: transparent;
         }
@@ -77,7 +77,7 @@ export default function Pagination({
     <Nav>
       <ul>
         {temp - limitPage < 1 ? null : (
-          <li>
+          <li className="arrow-left">
             <a onClick={() => setTemp(temp - limitPage)} role="button">
               <i className="fas fa-angle-left"></i>
             </a>
@@ -96,7 +96,7 @@ export default function Pagination({
           )
         })}
         {temp + limitPage > lengthOfPosts ? null : (
-          <li>
+          <li className="arrow-right">
             <a onClick={() => setTemp(temp + limitPage)} role="button">
               <i className="fas fa-angle-right"></i>
             </a>

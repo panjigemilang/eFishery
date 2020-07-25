@@ -34,6 +34,22 @@ body::-webkit-scrollbar-thumb {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
 button:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+button,
+button:focus {
+  border-radius: 12px;
+}
+
+button:focus {
+  border: 1px solid rgba(123, 198, 183, 0.5);
+  outline: none;
 }
