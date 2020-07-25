@@ -29,7 +29,7 @@ const Nav = styled.nav`
   flex-direction: column;
   left: 0;
   top: 0;
-  position: absolute;
+  position: fixed;
 
   ul {
     background-color: var(--light-primary);
