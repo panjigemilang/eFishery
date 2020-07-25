@@ -1,35 +1,25 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-  }
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
 
   @media (min-width: 576px) {
-    .container {
-      max-width: 540px;
-    }
+    max-width: 540px;
   }
 
   @media (min-width: 768px) {
-    .container {
-      max-width: 720px;
-    }
+    max-width: 720px;
   }
 
   @media (min-width: 992px) {
-    .container {
-      max-width: 960px;
-    }
+    max-width: 960px;
   }
 
   @media (min-width: 1200px) {
-    .container {
-      max-width: 1140px;
-    }
+    max-width: 1140px;
   }
 `
