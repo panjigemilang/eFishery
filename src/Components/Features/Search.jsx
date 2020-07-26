@@ -102,8 +102,8 @@ export default function Search({
       case "area provinsi":
         typeTemp = "area_provinsi"
         break
-      case "ukuran":
-        typeTemp = "size"
+      case "harga":
+        typeTemp = "price"
         break
       case "tanggal":
         typeTemp = "tgl_parsed"
@@ -135,7 +135,7 @@ export default function Search({
 
   const dynamicType = () => {
     switch (searchType) {
-      case "harga" || "ukuran":
+      case "harga" || "harga":
         return "number"
       case "tanggal":
         return "date"
@@ -170,7 +170,7 @@ export default function Search({
           <a onClick={() => setSearchType("area provinsi")} role="button">
             area provinsi
           </a>
-          <a onClick={() => setSearchType("ukuran")} role="button">
+          <a onClick={() => setSearchType("harga")} role="button">
             harga
           </a>
           <a onClick={() => setSearchType("tanggal")} role="button">

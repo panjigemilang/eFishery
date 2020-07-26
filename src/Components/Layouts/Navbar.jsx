@@ -66,6 +66,9 @@ const Nav = styled.nav`
 `
 
 export default function Navbar() {
+  React.useEffect(() => {
+    console.log("Window lOcation", window.location.pathname)
+  }, [])
   return (
     <>
       <StickyNav>

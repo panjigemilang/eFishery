@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import moment from "moment"
 import { useFetchList } from "../Reducer"
@@ -17,6 +18,10 @@ const App = styled.div`
     div {
       width: 100%;
     }
+
+    h1 {
+      color: var(--light-text-primary);
+    }
   }
 
   .content-container {
@@ -29,15 +34,21 @@ const App = styled.div`
       height: 50px;
       padding: 1.3em 2em;
 
-      button.add {
-        background-color: var(--light-primary);
-        border: none;
-        color: white;
-        margin-left: auto;
-        width: 150px;
+      a {
+        &.add {
+          margin-left: auto;
+        }
 
-        &:focus {
-          border: 1px solid #01e98d;
+        button.add {
+          background-color: var(--light-primary);
+          border: none;
+          color: white;
+          height: 100%;
+          padding: 0 15px;
+
+          &:focus {
+            border: 1px solid #01e98d;
+          }
         }
       }
     }
@@ -48,6 +59,7 @@ const Table = styled.table`
   background-color: #fff;
   border-spacing: 0;
   border-radius: 13px;
+  color: var(--light-text-primary);
   width: 100%;
 
   tr,
@@ -58,6 +70,7 @@ const Table = styled.table`
 
   tr:first-child {
     th:first-child {
+      color: var(--light-text-secondary);
       text-align: center;
     }
   }
@@ -86,6 +99,7 @@ const Table = styled.table`
 
   tbody {
     td:first-child {
+      color: var(--light-text-secondary);
       text-align: center;
     }
   }
@@ -177,10 +191,12 @@ export default function Home() {
                   setFilter={setFilter}
                   setData={setData}
                 />
-                <button className="add">
-                  <i className="fas fa-plus"></i>
-                  &ensp;Tambah data baru
-                </button>
+                <Link className="add" to="/add">
+                  <button className="add">
+                    <i className="fas fa-plus"></i>
+                    &ensp;Tambah data baru
+                  </button>
+                </Link>
               </div>
               <Table>
                 <thead>
@@ -239,7 +255,7 @@ export default function Home() {
                     currentPost.map((items, i) => {
                       return (
                         <tr key={i}>
-                          <td>{i}</td>
+                          <td>{currentPost.length * (page - 1) + i + 1}</td>
                           <td>
                             {items.komoditas === null ? "-" : items.komoditas}
                           </td>

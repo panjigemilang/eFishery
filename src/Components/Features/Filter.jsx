@@ -34,13 +34,17 @@ const DropdownContainer = styled.div`
       border-radius: 5px;
     }
 
-    input {
-      background-color: #dddddd;
-      border: none;
+    input,
+    select {
       height: 25px;
       margin: 10px 15px;
       padding-left: 15px;
       width: auto;
+    }
+
+    input {
+      background-color: #dddddd;
+      border: none;
 
       &:focus {
         background-color: #ddf3ef;
@@ -67,6 +71,11 @@ const DropdownContainer = styled.div`
       &.tgl-parsed {
         display: ${({ tglParsed }) => (tglParsed ? "block" : "none")};
       }
+    }
+
+    select {
+      display: ${({ price }) => (price ? "block" : "none")};
+      margin: 4px 15px;
     }
 
     a {
@@ -104,39 +113,17 @@ export default function Filter({
   setFilter,
   setData,
 }) {
-  const [searchType, setSearchType] = React.useState("")
   const [komoditas, setKomoditas] = React.useState("")
   const [areaKota, setAreaKota] = React.useState("")
   const [areaProvinsi, setAreaProvinsi] = React.useState("")
   const [price, setPrice] = React.useState("")
+  const [priceCondition, setPriceCondition] = React.useState("")
   const [tglParsed, setTglParsed] = React.useState("")
   const [showKomoditas, setShowKomoditas] = React.useState(false)
   const [showAreaKota, setShowAreaKota] = React.useState(false)
   const [showAreaProvinsi, setShowAreaProvinsi] = React.useState(false)
   const [showPrice, setShowPrice] = React.useState(false)
   const [showTglParsed, setShowTglParsed] = React.useState(false)
-
-  // set input value
-  React.useEffect(() => {
-    console.log("Changed search type")
-    switch (searchType) {
-      case "komoditas":
-        setShowKomoditas(!showKomoditas)
-        break
-      case "area_kota":
-        setShowAreaKota(!showAreaKota)
-        break
-      case "area_provinsi":
-        setShowAreaProvinsi(!showAreaProvinsi)
-        break
-      case "price":
-        setShowPrice(!showPrice)
-        break
-      case "tgl_parsed":
-        setShowTglParsed(!showTglParsed)
-        break
-    }
-  }, [searchType])
 
   // Filter function
   React.useEffect(() => {
@@ -158,7 +145,11 @@ export default function Filter({
         item["area_provinsi"]
           .toLowerCase()
           .includes(areaProvinsi.toLowerCase()) &&
-        item["price"].toLowerCase().includes(price.toLowerCase()) &&
+        (priceCondition
+          ? priceCondition === "more"
+            ? parseInt(item["price"]) > parseInt(price)
+            : parseInt(item["price"]) < parseInt(price)
+          : item["price"].toLowerCase().includes(price.toLowerCase())) &&
         item["tgl_parsed"].toLowerCase().includes(tglParsed.toLowerCase())
       )
     })
@@ -188,7 +179,7 @@ export default function Filter({
       <div className="dropdown-filter">
         <h3>PENGATURAN</h3>
         <hr />
-        <a onClick={() => setSearchType("komoditas")} role="button">
+        <a onClick={() => setShowKomoditas(!showKomoditas)} role="button">
           komoditas
         </a>
         <input
@@ -198,7 +189,7 @@ export default function Filter({
           type="text"
           value={komoditas}
         />
-        <a onClick={() => setSearchType("area_kota")} role="button">
+        <a onClick={() => setShowAreaKota(!showAreaKota)} role="button">
           area kota
         </a>
         <input
@@ -208,7 +199,7 @@ export default function Filter({
           type="text"
           value={areaKota}
         />
-        <a onClick={() => setSearchType("area_provinsi")} role="button">
+        <a onClick={() => setShowAreaProvinsi(!showAreaProvinsi)} role="button">
           area provinsi
         </a>
         <input
@@ -218,9 +209,17 @@ export default function Filter({
           type="text"
           value={areaProvinsi}
         />
-        <a onClick={() => setSearchType("price")} role="button">
+        <a onClick={() => setShowPrice(!showPrice)} role="button">
           harga
         </a>
+        <select
+          onChange={(e) => setPriceCondition(e.target.value)}
+          value={priceCondition}
+        >
+          <option value="">Sama</option>
+          <option value="more">Lebih dari</option>
+          <option value="less">Kurang dari</option>
+        </select>
         <input
           className="price"
           onChange={(e) => setPrice(e.target.value)}
@@ -228,7 +227,7 @@ export default function Filter({
           type="text"
           value={price}
         />
-        <a onClick={() => setSearchType("tgl_parsed")} role="button">
+        <a onClick={() => setShowTglParsed(!showTglParsed)} role="button">
           tanggal
         </a>
         <input

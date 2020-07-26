@@ -4,6 +4,8 @@
   --light-primary: #27a98b;
   --light-secondary: #70d0b1;
   --light-background: #d9fff3;
+  --light-text-primary: #000;
+  --light-text-secondary: #8d949c;
   --error: #f20000;
   --transition-speed: 600ms;
 }
