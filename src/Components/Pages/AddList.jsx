@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { useAddList } from "../Reducer"
 import { Container } from "../Commons/StyledComponents"
 import styled from "styled-components"
@@ -7,12 +8,11 @@ const App = styled.div`
   margin-left: 15vw;
   position: relative;
 
-  .container {
-    margin-top: 5vh;
-  }
-
   .back-button {
-    position: absolute;
+    background-color: var(--light-primary);
+    color: #fff;
+    font-size: 1em;
+    margin: 25px 3vw 0;
   }
 
   form {
@@ -98,7 +98,12 @@ export default function AddList() {
 
   return (
     <App>
-      <button className="back-button">Back button</button>
+      <Link to="/">
+        <button className="back-button">
+          <i className="fas fa-angle-left"></i>
+          &nbsp;Kembali
+        </button>
+      </Link>
       <Container className="container">
         <h1>Tambah Data</h1>
         <form>

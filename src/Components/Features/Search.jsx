@@ -69,6 +69,10 @@ const DropdownContainer = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 600px) {
+    display: inline;
+  }
 `
 
 export default function Search({

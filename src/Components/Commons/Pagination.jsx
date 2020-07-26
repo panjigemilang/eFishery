@@ -28,13 +28,11 @@ const Nav = styled.nav`
           border-color: var(--light-primary);
           color: var(--light-primary);
           text-decoration: none;
-          z-index: 2;
         }
 
         &:focus {
           box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
           outline: 0;
-          z-index: 3;
         }
       }
 
@@ -54,6 +52,10 @@ const Nav = styled.nav`
         z-index: 3;
       }
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    float: unset;
   }
 `
 

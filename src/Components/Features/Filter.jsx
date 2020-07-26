@@ -104,6 +104,14 @@ const DropdownContainer = styled.div`
       width: 90%;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    display: inline;
+
+    .dropdown-filter {
+      right: 0;
+    }
+  }
 `
 
 export default function Filter({

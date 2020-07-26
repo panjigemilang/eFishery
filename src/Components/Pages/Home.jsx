@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import moment from "moment"
+import ListsMobile from "./ListsMobile"
+import IndexContext from "../Context"
 import { useFetchList } from "../Reducer"
 import Loading from "../Commons/Loading"
 import Pagination from "../Commons/Pagination"
@@ -11,6 +13,9 @@ import Filter from "../Features/Filter"
 
 const App = styled.div`
   margin-left: 15vw;
+  filter: ${({ navShow }) => (navShow ? "blur(5px)" : null)};
+  opacity: ${({ navShow }) => (navShow ? 0.3 : 1)};
+  overflow: ${({ navShow }) => (navShow ? "hidden" : "visible")};
 
   .header-container {
     display: flex;
@@ -27,12 +32,15 @@ const App = styled.div`
   .content-container {
     background-color: #fff;
     border-radius: 13px;
+    position: relative;
 
     .feature-container {
       color: var(--light-primary);
       display: flex;
       height: 50px;
       padding: 1.3em 2em;
+      width: calc(100% - 65px);
+      z-index: 99;
 
       a {
         &.add {
@@ -51,6 +59,59 @@ const App = styled.div`
           }
         }
       }
+    }
+  }
+
+  .mobile-feature-container,
+  .mobile-list {
+    display: none;
+  }
+
+  @media screen and (max-width: 958px) {
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: 758px) {
+    .container {
+      width: auto;
+    }
+
+    .pagination {
+      display: none;
+    }
+
+    .content-container {
+      background-color: transparent;
+    }
+
+    .feature-container {
+      background-color: maroon;
+      bottom: 0;
+      display: none !important;
+      left: 0;
+      position: fixed;
+    }
+
+    .mobile-feature-container {
+      display: block;
+
+      button.add {
+        background-color: var(--light-secondary);
+        border: 0;
+        border-radius: 50%;
+        bottom: 15px;
+        color: white;
+        font-size: 4em;
+        height: 0.8em;
+        line-height: 50px;
+        position: fixed;
+        right: 15px;
+        z-index: 99;
+      }
+    }
+
+    .mobile-list {
+      display: block;
     }
   }
 `
@@ -103,9 +164,14 @@ const Table = styled.table`
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 
 export default function Home() {
+  const context = React.useContext(IndexContext)
   const [data, setData] = React.useState([])
   const [order, setOrder] = React.useState("asc")
   const [page, setPage] = React.useState(1)
@@ -126,7 +192,10 @@ export default function Home() {
   const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
 
   // paginate function
-  const paginate = (pageNumber) => setPage(pageNumber)
+  const paginate = (pageNumber) => {
+    window.scrollTo(0, 0)
+    setPage(pageNumber)
+  }
 
   const sorting = (key, order) => {
     let temp
@@ -155,15 +224,15 @@ export default function Home() {
   }
 
   return (
-    <App>
+    <App navShow={context.showNav}>
       {loading && <Loading />}
-      <Container>
+      <Container className="container">
         {Object.keys(errors).length !== 0 && <h1>Error coyy</h1>}
         {!loading && (
           <>
             <div className="header-container">
               <h1>List</h1>
-              <div>
+              <div className="pagination">
                 <Pagination
                   currentPage={page}
                   paginate={paginate}
@@ -196,6 +265,29 @@ export default function Home() {
                     <i className="fas fa-plus"></i>
                     &ensp;Tambah data baru
                   </button>
+                </Link>
+              </div>
+              <div className="mobile-feature-container">
+                <Search
+                  dropdown={dropdown}
+                  setDropdown={setDropdown}
+                  filter={filter}
+                  setFilter={setFilter}
+                  lists={lists}
+                  setData={setData}
+                  searchType={searchType}
+                  setSearchType={setSearchType}
+                />
+
+                <Filter
+                  dropdown={dropdown}
+                  lists={lists}
+                  filter={filter}
+                  setFilter={setFilter}
+                  setData={setData}
+                />
+                <Link className="add" to="/add">
+                  <button className="add">+</button>
                 </Link>
               </div>
               <Table>
@@ -279,6 +371,15 @@ export default function Home() {
                   )}
                 </tbody>
               </Table>
+              <div className="mobile-list">
+                <ListsMobile currentPost={currentPost} currentPage={page} />
+                <Pagination
+                  currentPage={page}
+                  paginate={paginate}
+                  postPerPage={postPerPage}
+                  totalPosts={data.length}
+                />
+              </div>
             </div>
           </>
         )}
