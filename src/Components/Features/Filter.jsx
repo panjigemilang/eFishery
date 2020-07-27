@@ -105,7 +105,7 @@ const DropdownContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
     display: inline;
     margin-top: 15px;
 

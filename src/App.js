@@ -28,6 +28,8 @@ function App() {
       case "/":
         toggleActive(1)
         break
+      default:
+        break
     }
   }, [])
 

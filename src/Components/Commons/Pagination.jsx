@@ -7,11 +7,14 @@ const Nav = styled.nav`
   ul {
     display: -ms-flexbox;
     display: flex;
+    height: 65%;
     padding-left: 0;
     list-style: none;
     border-radius: 0.25rem;
 
     li {
+      margin: auto;
+
       a {
         background-color: #fff;
         border-radius: 8px;

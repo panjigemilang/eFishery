@@ -31,6 +31,10 @@ const SearchBox = styled.div`
     position: absolute;
     padding: 9px;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const DropdownContainer = styled.div`
@@ -71,7 +75,7 @@ const DropdownContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
     display: inline;
     margin-left: 0;
     margin-top: 15px;
@@ -107,9 +111,6 @@ export default function Search({
     let typeTemp = searchType
 
     switch (searchType) {
-      case "harga":
-        typeTemp = "price"
-        break
       case "area kota":
         typeTemp = "area_kota"
         break
@@ -122,6 +123,8 @@ export default function Search({
       case "tanggal":
         searchTemp = moment(searchTemp)
         typeTemp = "tgl_parsed"
+        break
+      default:
         break
     }
 

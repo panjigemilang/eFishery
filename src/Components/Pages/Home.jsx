@@ -10,6 +10,8 @@ import Pagination from "../Commons/Pagination"
 import { Container } from "../Commons/StyledComponents"
 import Search from "../Features/Search"
 import Filter from "../Features/Filter"
+import PostPerPage from "../Features/PostPerPage"
+import useCurrentWitdh from "../Commons/GetWidth"
 
 const App = styled.div`
   margin-left: 15vw;
@@ -27,6 +29,14 @@ const App = styled.div`
     h1 {
       color: var(--light-text-primary);
     }
+
+    .pagination {
+      display: inline-flex;
+
+      select {
+        height: 50%;
+      }
+    }
   }
 
   .content-container {
@@ -41,6 +51,10 @@ const App = styled.div`
       padding: 1.3em 2em;
       width: calc(100% - 65px);
       z-index: 99;
+
+      select {
+        display: none;
+      }
 
       a {
         &.add {
@@ -70,13 +84,13 @@ const App = styled.div`
     margin-left: 0;
   }
 
-  @media screen and (max-width: 758px) {
+  @media screen and (max-width: 768px) {
     .container {
       width: auto;
     }
 
     .pagination {
-      display: none;
+      display: none !important;
     }
 
     .content-container {
@@ -87,6 +101,10 @@ const App = styled.div`
       flex-wrap: wrap;
       height: auto !important;
       padding: 0 1em !important;
+
+      select {
+        display: inline-block !important;
+      }
 
       button.add {
         background-color: var(--light-secondary);
@@ -174,6 +192,7 @@ export default function Home() {
   const [dropdown, setDropdown] = React.useState(false)
   const [filter, setFilter] = React.useState(false)
   const { lists, loading, errors } = useFetchList()
+  const width = useCurrentWitdh()
   const breakpoint = 768
 
   // set Data from props
@@ -222,12 +241,16 @@ export default function Home() {
     <App navShow={context.showNav}>
       {loading && <Loading />}
       <Container className="container">
-        {Object.keys(errors).length !== 0 && <h1>Error coyy</h1>}
+        {Object.keys(errors).length !== 0 && <h1>Terjadi Kesalahan :((( </h1>}
         {!loading && (
           <>
             <div className="header-container">
               <h1>List</h1>
               <div className="pagination">
+                <PostPerPage
+                  postPerPage={postPerPage}
+                  setPostPerPage={setPostPerPage}
+                />
                 <Pagination
                   currentPage={page}
                   paginate={paginate}
@@ -255,9 +278,13 @@ export default function Home() {
                   setFilter={setFilter}
                   setData={setData}
                 />
+                <PostPerPage
+                  postPerPage={postPerPage}
+                  setPostPerPage={setPostPerPage}
+                />
                 <Link className="add" to="/add">
                   <button className="add">
-                    {window.innerWidth < breakpoint ? (
+                    {width < breakpoint ? (
                       "+"
                     ) : (
                       <>
