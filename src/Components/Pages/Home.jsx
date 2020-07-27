@@ -52,7 +52,7 @@ const App = styled.div`
       width: calc(100% - 65px);
       z-index: 99;
 
-      select {
+      select.post-per-page {
         display: none;
       }
 
@@ -102,7 +102,7 @@ const App = styled.div`
       height: auto !important;
       padding: 0 1em !important;
 
-      select {
+      select.post-per-page {
         display: inline-block !important;
       }
 

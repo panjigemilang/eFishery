@@ -13,6 +13,7 @@ const Select = styled.select`
 export default function PostPerPage({ postPerPage, setPostPerPage }) {
   return (
     <Select
+      className="post-per-page"
       onChange={(e) => setPostPerPage(e.target.value)}
       value={postPerPage}
     >
