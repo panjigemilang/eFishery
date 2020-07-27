@@ -74,6 +74,39 @@ const App = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+
+    .container {
+      width: auto !important;
+    }
+
+    form {
+      margin-bottom: 20px;
+
+      div.field-container {
+        flex-direction: column;
+        font-size: 0.9em;
+
+        input {
+          width: 90% !important;
+        }
+
+        ul {
+          padding: 0;
+        }
+      }
+    }
+
+    div.button-container {
+      margin: 0;
+
+      button {
+        margin: 15px 0;
+      }
+    }
+  }
 `
 
 export default function AddList() {

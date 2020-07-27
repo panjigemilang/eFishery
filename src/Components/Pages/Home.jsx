@@ -62,7 +62,6 @@ const App = styled.div`
     }
   }
 
-  .mobile-feature-container,
   .mobile-list {
     display: none;
   }
@@ -85,15 +84,9 @@ const App = styled.div`
     }
 
     .feature-container {
-      background-color: maroon;
-      bottom: 0;
-      display: none !important;
-      left: 0;
-      position: fixed;
-    }
-
-    .mobile-feature-container {
-      display: block;
+      flex-wrap: wrap;
+      height: auto !important;
+      padding: 0 1em !important;
 
       button.add {
         background-color: var(--light-secondary);
@@ -102,8 +95,9 @@ const App = styled.div`
         bottom: 15px;
         color: white;
         font-size: 4em;
-        height: 0.8em;
+        height: 0.8em !important;
         line-height: 50px;
+        padding: 0 8px !important;
         position: fixed;
         right: 15px;
         z-index: 99;
@@ -180,6 +174,7 @@ export default function Home() {
   const [dropdown, setDropdown] = React.useState(false)
   const [filter, setFilter] = React.useState(false)
   const { lists, loading, errors } = useFetchList()
+  const breakpoint = 768
 
   // set Data from props
   React.useEffect(() => {
@@ -262,32 +257,15 @@ export default function Home() {
                 />
                 <Link className="add" to="/add">
                   <button className="add">
-                    <i className="fas fa-plus"></i>
-                    &ensp;Tambah data baru
+                    {window.innerWidth < breakpoint ? (
+                      "+"
+                    ) : (
+                      <>
+                        <i className="fas fa-plus"></i>
+                        &ensp;Tambah data baru
+                      </>
+                    )}
                   </button>
-                </Link>
-              </div>
-              <div className="mobile-feature-container">
-                <Search
-                  dropdown={dropdown}
-                  setDropdown={setDropdown}
-                  filter={filter}
-                  setFilter={setFilter}
-                  lists={lists}
-                  setData={setData}
-                  searchType={searchType}
-                  setSearchType={setSearchType}
-                />
-
-                <Filter
-                  dropdown={dropdown}
-                  lists={lists}
-                  filter={filter}
-                  setFilter={setFilter}
-                  setData={setData}
-                />
-                <Link className="add" to="/add">
-                  <button className="add">+</button>
                 </Link>
               </div>
               <Table>

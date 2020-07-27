@@ -72,6 +72,13 @@ const DropdownContainer = styled.div`
 
   @media screen and (max-width: 600px) {
     display: inline;
+    margin-left: 0;
+    margin-top: 15px;
+
+    button.search-type {
+      height: 50px;
+      width: 85px;
+    }
   }
 `
 

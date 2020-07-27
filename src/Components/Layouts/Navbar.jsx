@@ -107,15 +107,20 @@ const StickyNav = styled.nav`
     img {
       border-radius: 50%;
       margin-right: 7vw;
-      width: 3em;
+      width: 1.5em;
     }
 
     div.profile {
+      display: flex;
       float: right;
 
       li {
         display: inline;
         margin-right: 2vw;
+
+        &:first-child {
+          margin-right: 1vw;
+        }
       }
     }
   }
@@ -132,7 +137,7 @@ const StickyNav = styled.nav`
     }
 
     div.profile {
-      display: none;
+      display: none !important;
     }
   }
 `

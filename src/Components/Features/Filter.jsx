@@ -107,9 +107,10 @@ const DropdownContainer = styled.div`
 
   @media screen and (max-width: 600px) {
     display: inline;
+    margin-top: 15px;
 
     .dropdown-filter {
-      right: 0;
+      right: auto;
     }
   }
 `
