@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import moment from "moment"
 
 const SearchBox = styled.div`
   line-height: 47px;
@@ -100,6 +101,8 @@ export default function Search({
       return setData([...lists])
     }
 
+    let items
+    let temp = [...lists]
     let searchTemp = search
     let typeTemp = searchType
 
@@ -117,18 +120,27 @@ export default function Search({
         typeTemp = "price"
         break
       case "tanggal":
+        searchTemp = moment(searchTemp)
         typeTemp = "tgl_parsed"
         break
     }
 
-    let temp = [...lists]
-
-    let items = temp.filter((item) => {
-      return (
-        item[typeTemp] !== null &&
-        item[typeTemp].toLowerCase().includes(searchTemp.toLowerCase())
-      )
-    })
+    if (searchType !== "tanggal")
+      items = temp.filter((item) => {
+        return (
+          item[typeTemp] !== null &&
+          item[typeTemp].toLowerCase().includes(searchTemp.toLowerCase())
+        )
+      })
+    else
+      items = temp.filter((item) => {
+        return (
+          item[typeTemp] !== null &&
+          moment(item[typeTemp])
+            .format("MM/DD/YYYY")
+            .includes(searchTemp.format("MM/DD/YYYY"))
+        )
+      })
 
     setData([...items])
   }, [search])

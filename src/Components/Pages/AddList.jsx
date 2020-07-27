@@ -116,14 +116,14 @@ export default function AddList() {
   const [price, setPrice] = React.useState("")
   const [tglParsed, setTglParsed] = React.useState("")
   const [submit, setSubmit] = React.useState(false)
-  const { loading, list, errors } = useAddList(
+  const { loading } = useAddList(
     [
       {
         komoditas,
-        areaKota,
-        areaProvinsi,
+        area_kota: areaKota,
+        area_provinsi: areaProvinsi,
         price,
-        tglParsed,
+        tgl_parsed: tglParsed,
       },
     ],
     submit

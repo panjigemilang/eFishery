@@ -15,7 +15,7 @@ const StickyNav = styled.nav`
     div.burger-menu {
       display: none;
       height: 50px;
-      float: left;
+      float: right;
       margin: 0px;
       position: relative;
       width: 45px;

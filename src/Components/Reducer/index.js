@@ -1,5 +1,6 @@
 import React from "react"
 import axios from "axios"
+import moment from "moment"
 const SteinStore = require("stein-js-client")
 
 const store = new SteinStore(
@@ -82,6 +83,8 @@ export function useAddList(data, submit) {
 
   React.useEffect(() => {
     if (!submit) return
+
+    data[0].tglParsed = moment(data[0].tglParsed)
 
     dispatch({ type: ACTIONS.MAKE_REQUEST })
 
