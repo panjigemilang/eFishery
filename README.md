@@ -16,7 +16,7 @@ Assalamu'alaikum warahmatullah.
   <li>
     Copy url repository ini dengan menekan tombol
     <span style="color: white; background-color: rgb(24, 172, 24);"
-      >`Code`</span
+      ><code>Code</code></span
     >
     kemudian <i>copy</i>
   </li>
@@ -24,24 +24,24 @@ Assalamu'alaikum warahmatullah.
     Buka teks editor favorit anda
   </li>
   <li>
-    Buka `terminal` kemudian ketik `node -v` untuk melihat versi Node Js. Jika
+    Buka <code>terminal</code> kemudian ketik <code>node -v</code> untuk melihat versi Node Js. Jika
     telah terinstall, akan muncul versi dari Node Js.
   </li>
   <li>
-    Ketik `git clone ` kemudian <i>paste</i> link url repository yang telah di
+    Ketik <code>git clone </code> kemudian <i>paste</i> link url repository yang telah di
     <i>copy</i> sebelumnya. Sehingga menjadi seperti baris berikut: <br />
-    `git clone https://github.com/user_name/awesomerepository.git`
+    <code>git clone https://github.com/user_name/awesomerepository.git</code>
   </li>
   <li>Tunggu hingga proses <i>cloning</i> selesai</li>
   <li>
     Jika sudah berhasil, masuk ke dalam folder tersebut
   </li>
   <li>
-    Ketik `npm i` untuk melakukan instalasi aplikasi. Tunggu hingga selesai
+    Ketik <code>npm i</code> untuk melakukan instalasi aplikasi. Tunggu hingga selesai
   </li>
   <li>
-    Jika telah selesai, ketik `npm start` untuk menjalankan aplikasi. Kemudian
-    anda akan diberikan link `http://localhost` untuk melihat aplikasi. Umumnya
+    Jika telah selesai, ketik <code>npm start</code> untuk menjalankan aplikasi. Kemudian
+    anda akan diberikan link <code>http://localhost</code> untuk melihat aplikasi. Umumnya
     setelah aplikasi dijalankan, dapat diakses pada link berikut :
     <a href="http://localhost:3000">http://localhost:3000</a>
   </li>
